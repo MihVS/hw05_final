@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+    <title>Пост: {{ post.text|truncatechars:30 }}</title>
+{% endblock title %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row">
+      <aside class="col-12 col-md-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Дата публикации: {{ post.created|date:"d E Y" }}
+          </li>
+          {% if post.group %}
+             <li class="list-group-item">
+              <p>Группа: {{ post.group }}</p>
+              <a href="{% url 'posts:group_list' post.group.slug %}">
+                все записи группы {{ post.group }}
+              </a>
+            </li>
+          {% endif %}
+
+            <li class="list-group-item">
+              Автор: {{ post.author.get_full_name }}
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Всего постов автора:  <span>{{ post.author.posts.count }}</span>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'posts:profile' post.author %}">
+              все посты пользователя
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <article class="col-12 col-md-9">
+        {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+          <img class="card-img my-2" src="{{ im.url }}">
+        {% endthumbnail %}
+        <p>
+         {{ post.text }}
+        </p>
+        <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}">
+        редактировать запись
+        </a>
+      </article>
+    </div>
+  </div>
+  {% load user_filters %}
+  <div class="container py-5">
+    {% if user.is_authenticated %}
+      <div class="card my-4">
+        <h5 class="card-header">Добавить комментарий:</h5>
+        <div class="card-body">
+          <form method="post" action="{% url 'posts:add_comment' post.id %}">
+            {% csrf_token %}
+            <div class="form-group mb-2">
+              {{ form.text|addclass:"form-control" }}
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+
+    {% for comment in page_obj %}
+      <div class="media mb-4">
+        <div class="media-body">
+          <ul>
+            <li>
+              Автор:
+              <a href="{% url 'posts:profile' comment.author.username %}">{{ comment.author.get_full_name }}</a>
+            </li>
+            <li>
+              Дата публикации: {{ comment.created|date:"d E Y" }}
+            </li>
+          </ul>
+            <p class="text-break">
+             {{ comment.text }}
+            </p>
+          </div>
+        </div>
+    {% endfor %}
+    {% include 'posts/includes/paginator.html' %}
+  </div>
+{% endblock %}
+
+

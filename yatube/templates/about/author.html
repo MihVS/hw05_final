@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+    {% load static %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12 author-h1">
+          <h1>Михаил Шутов</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row ">
+         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 author-p">
+            <p>
+                Привет! Мне нравиться программировать. В мир IT я пришёл из энергетики.
+                Моё хобби создавать умные дома. Какой же умный дом без программирования?
+                Я люблю создавать комфорт людям и облегчать рутинный труд.
+            </p>
+            <p>
+                Я верю что у меня всё получится!
+            </p>
+         </div>
+         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <img class="author-img" src="{% static 'img/author.jpg' %}">
+         </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <a href="http://github.com/mihvs"><img class="icon" src="{% static 'img/github.png' %}"></a>
+            <a href="https://t.me/mihvs"><img class="icon" src="{% static 'img/telegram.png' %}"></a>
+            <a href="mailto: mihvs22@yandex.ru"><img class="icon" src="{% static 'img/email.png' %}"></a>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>
+    {% if is_edit %}
+      Редактировать запись
+    {% else %}
+      Новый пост
+    {% endif %}
+  </title>
+{% endblock title %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 p-5">
+        <div class="card">
+          <div class="card-header">
+            {% if is_edit %}
+              Редактировать запись
+            {% else %}
+              Новый пост
+    {% endif %}
+          </div>
+          <div class="card-body">
+            {% if form.errors %}
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <div class="alert alert-danger">
+                    {{ error|escape }}
+                  </div>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                  {{ error|escape }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            <form method="post" enctype="multipart/form-data"
+            {% if is_edit %}
+              action="{% url 'posts:post_edit' post_id %}"
+            {% else %}
+              action="{% url 'posts:post_create' %}"
+            {% endif %}
+            >
+              {% csrf_token %}
+              {% for field in form %}
+                <div class="form-group row my-3"
+                  {% if field.field.required %}
+                    aria-required="true"
+                  {% else %}
+                    aria-required="false"
+                  {% endif %}
+                >
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}
+                  {% if field.field.required %}
+                    <span class="required text-danger">*</span>
+                  {% endif %}
+                </label>
+                {{ field }}
+                <small id="id_text-help" class="form-text text-muted">
+                  {{ field.help_text }}
+                </small>
+              {% endfor %}
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                  {% if is_edit %}
+                    Сохранить
+                  {% else %}
+                    Добавить
+                  {% endif %}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content%}
+
