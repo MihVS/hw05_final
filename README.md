@@ -5,7 +5,7 @@
 Социальная сеть, с возможностью публикации постов, комментирования постов, 
 подпиской на авторов и группы. 
 
-### **Стек**
+### **Технологии**
 ![python version](https://img.shields.io/badge/Python-3.9-yellowgreen?logo=python)
 ![django version](https://img.shields.io/badge/Django-2.2-yellowgreen?logo=django)
 ![pytest version](https://img.shields.io/badge/pytest-6.2-yellowgreen?logo=pytest)
