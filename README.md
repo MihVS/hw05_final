@@ -3,12 +3,16 @@
 Социальная сеть. **Учебный проект**.
 
 Социальная сеть, с возможностью публикации постов, комментирования постов, 
-подпиской на авторов и группы.
+подпиской на авторов и группы. 
 
 ### **Стек**
 ![python version](https://img.shields.io/badge/Python-3.9-yellowgreen?logo=python)
 ![django version](https://img.shields.io/badge/Django-2.2-yellowgreen?logo=django)
 ![pytest version](https://img.shields.io/badge/pytest-6.2-yellowgreen?logo=pytest)
+![pytest version](https://img.shields.io/badge/Unittest--yellowgreen?logo=unittest)
+![pytest version](https://img.shields.io/badge/SQLite-3-yellowgreen?logo=sqlite)
+![sorl-thumbnail version](https://img.shields.io/badge/Bootstrap-3-yellowgreen?logo=bootstrap)
+![sorl-thumbnail version](https://img.shields.io/badge/HTML--yellowgreen?logo=html5)
 ![sorl-thumbnail version](https://img.shields.io/badge/thumbnail-12.7-yellowgreen)
 ![requests version](https://img.shields.io/badge/requests-2.26-yellowgreen)
 
